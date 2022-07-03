@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import {Routes, Route } from 'react-router-dom';
+
+import MainPage from './component/pages/MainPage';
+import Board from './component/pages/Board';
+import Write from './component/pages/Write';
+
+const GlobalStyles = createGlobalStyle`
+    ${reset};
+`;
 
 function App() {
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles/>
+        <Routes>
+          <Route path="/" element={<MainPage/>}></Route>
+          <Route path="/board" element={<Board/>}></Route>
+          <Route path="/write" element={<Write/>}></Route>
+        </Routes>
+    </>
+
+    
   );
 }
 
