@@ -6,7 +6,11 @@ import MainPage from './component/pages/MainPage';
 import Board from './component/pages/Board';
 import Write from './component/pages/Write';
 
+<<<<<<< HEAD
 import './index.css';
+=======
+import {Pc,Mobile,Tablet} from './component/common/MediaQuery'
+>>>>>>> ade6125dc1cbc07155c3a3b79a92f6800ea1e699
 
 const GlobalStyles = createGlobalStyle`
     ${reset};
@@ -18,11 +22,27 @@ function App() {
   return (
     <>
       <GlobalStyles/>
+      <Pc>
         <Routes>
           <Route path="/" element={<MainPage/>}></Route>
           <Route path="/board" element={<Board/>}></Route>
           <Route path="/write" element={<Write/>}></Route>
         </Routes>
+      </Pc>
+      <Mobile>
+        <Routes>
+          <Route path="/" element={<MainPage/>}></Route>
+          <Route path="/board" element={<Board/>}></Route>
+          <Route path="/write" element={<Write/>}></Route>
+        </Routes>
+      </Mobile>
+      <Tablet>
+        <Routes>
+          <Route path="/" element={<MainPage/>}></Route>
+          <Route path="/board" element={<Board/>}></Route>
+          <Route path="/write" element={<Write/>}></Route>
+        </Routes>
+      </Tablet>
     </>
 
     
