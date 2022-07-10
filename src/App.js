@@ -6,6 +6,8 @@ import MainPage from './component/pages/MainPage';
 import Board from './component/pages/Board';
 import Write from './component/pages/Write';
 
+import './index.css';
+
 const GlobalStyles = createGlobalStyle`
     ${reset};
 `;
