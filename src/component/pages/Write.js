@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-
-const Write = ()=>{
-    return(
-    <>
-    <div>글쓰기</div>
-    <Link to="/">메인가기</Link>
-    <Link to="/board">게시판가기</Link>
-    </>)
-=======
 import React,{useState,useEffect} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -91,7 +80,6 @@ const Write = ({history})=>{
             <button className = "submit-button" onClick={uploadPost}>글쓰기</button>
         </FormWrapper>
 </>)
->>>>>>> ade6125dc1cbc07155c3a3b79a92f6800ea1e699
 }
 
 const FormWrapper=styled.div`
