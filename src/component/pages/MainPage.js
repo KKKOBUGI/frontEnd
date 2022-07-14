@@ -1,18 +1,19 @@
-import { Link } from "react-router-dom";
 
 import moment from 'moment';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Layout from '../common/Layout.js';
 
-import StopWatch from './StopWatch.js';
-import Accordion from "./Accordion.js";
+import StopWatch from '../function/StopWatch.js';
+import Accordion from "../function/Accordion.js";
 
 const MainPage=()=>{
     const [date, setDate] = useState();
 
     return(
         <>
+            <Layout>
             <div className="container">
                 <div className="wrapper">
                     <Calendar 
@@ -30,12 +31,10 @@ const MainPage=()=>{
                     <Accordion/>
                 </div>
                 
-                <div className="btm-menu">
-                    <div className="go-write"><Link to="/board">게시판</Link></div>
-                    <div className="go-main"><Link to="/">메인</Link></div>
-                    <div className="go-user"><Link to="/">내 정보</Link></div>
+                
+
                 </div>
-            </div>
+            </Layout>
         </>
     )
 }
