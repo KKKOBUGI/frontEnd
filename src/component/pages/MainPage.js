@@ -19,20 +19,16 @@ const MainPage=()=>{
                     <Calendar 
                         onChange={setDate} 
                         value={date} 
-                        formatDay={(locale, date) => date.toLocaleString("en", {day: "numeric"})}/>
-
+                        formatDay={(locale, date) => date.toLocaleString("en", {day: "numeric"})}
+                    />
                     <div className="today-wrap">
                         <p>{moment(date).format("YYYY년 MM월 DD일")}</p>
                         <StopWatch />
                     </div>
                 </div>
-
                 <div id="Accorion">
                     <Accordion/>
                 </div>
-                
-                
-
                 </div>
             </Layout>
         </>

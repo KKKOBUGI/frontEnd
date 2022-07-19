@@ -6,6 +6,7 @@ import MainPage from './component/pages/MainPage';
 import Board from './component/pages/Board';
 import Write from './component/pages/Write';
 import View from './component/pages/View';
+import Revise from './component/pages/Revise';
 import './index.css';
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<MainPage/>}></Route>
         <Route path="/board" element={<Board/>}></Route>
         <Route path="/board/:id" element={<View/>}></Route>
+        <Route path="/board/:id/re" element={<Revise/>}></Route>
         <Route path="/write" element={<Write/>}></Route>
       </Routes>
       
