@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import {useNavigate } from 'react-router-dom';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Layout from '../common/Layout';
 import axios from 'axios';
 import styled from 'styled-components'
+import Editor from '../function/Editor';
 
 
 const Write = ()=>{
@@ -37,7 +36,7 @@ const Write = ()=>{
 
     const uploadPost=()=>{
       axios.post("http://localhost:4000/posts",{
-        userId :len+1,
+        userId :content.userId,
         id:len+1,
         body:content.body.replace(/(<([^>]+)>)/ig,""),
         title:content.title
@@ -54,47 +53,16 @@ const Write = ()=>{
     return(<>
         <Layout>
         <FormWrapper>
-            <input className = "title-input" type='text' placeholder='제목' onChange={getValue} name='title'/>
-            <CKEditor 
-                editor={ ClassicEditor }
-                data=""
-                onReady={ editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log( 'Editor is ready to use!', editor );
-                } }
-                onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
-                    setContent({
-                    ...content,
-                    body: data
-                    })
-                }}
-                onBlur={ ( event, editor ) => {
-                    console.log( 'Blur.', editor );
-                } }
-                onFocus={ ( event, editor ) => {
-                    console.log( 'Focus.', editor );
-                } }
-            />
+            <Editor getValue={getValue} content={content} setContent={setContent} />
             <button className = "submit-button" onClick={uploadPost}>글쓰기</button>
         </FormWrapper>
-         
         </Layout>
 </>)
 }
 
 const FormWrapper=styled.div`
-    width: 100%;
-    margin: 0 auto;
-  
-  
-  .title-input {
-    width: 90%;
-    height: 40px;
-    margin: 10px 0px;
-  }
-  
+  width: 100%;
+  margin: 0 auto;  
   .submit-button {
     width: 100px;
     height: 50px;
