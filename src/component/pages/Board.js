@@ -8,7 +8,7 @@ import Pagination from "../function/Pagination";
 const Board=()=>{
 
     const [posts, setPosts] = useState([]);
-    const limit = 10;
+    const limit = 15;
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
   

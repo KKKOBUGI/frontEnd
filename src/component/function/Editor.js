@@ -7,12 +7,12 @@ const Editor =({getValue,content,setContent})=>{
     return(
         <>
         <InfoWrap>
-            <input className = "title-input" type='text' placeholder='제목' onChange={getValue} name='title'/>
-            <input className='userId-input' type='text' placeholder='작성자'onChange={getValue} name='userId'/>
+            <input className = "title-input" type='text' value={content.title} placeholder='제목' onChange={getValue} name='title'/>
+            <input className='userId-input' type='text' value={content.userId} placeholder='작성자'onChange={getValue} name='userId'/>
         </InfoWrap>
         <CKEditor 
                 editor={ ClassicEditor }
-                data=''
+                data='내용을 입력해주세요'
                 onReady={ editor => {
                     // You can store the "editor" and use when it is needed.
                     console.log( 'Editor is ready to use!', editor );

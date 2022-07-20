@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 const LayoutStyle=styled.div`
+    position:relative;
     width: 428px;
     height: 100vh;
     margin:0 auto;
@@ -12,7 +13,6 @@ const LayoutStyle=styled.div`
         padding:20px;
         text-align:center;
     }
-
 .btm-menu{
     position: fixed;
     bottom:0;
