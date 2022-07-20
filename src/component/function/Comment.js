@@ -1,4 +1,4 @@
-// import axios from "axios"
+import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
 
@@ -16,10 +16,10 @@ const Comment=({id})=>{
         })
     }
     const onPost=()=>{
-        console.log(id)
-        console.log(content.comment)
-        // axios.patch(`http://localhost:4000/posts/${id}`,{
-        // })
+        console.log(content)
+        axios.patch(`http://localhost:4000/posts/${id}`,{
+            comments:content
+        })
     }
     return(
         <>
@@ -30,6 +30,7 @@ const Comment=({id})=>{
                 </div>
                 <button onClick={onPost}>등록하기</button>
             </CommentWrap>
+            
         </>
     )
 }

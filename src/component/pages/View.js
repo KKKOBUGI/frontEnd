@@ -14,13 +14,13 @@ const View = ()=>{
             body:'',
             title:''
         })
+
     
         const onRemove=(id)=>{
             axios.delete(`http://localhost:4000/posts/${id}`)
             navigate('/board')
         }
-   
-
+        
     useEffect(()=>{
         const viewNow=async()=>{
             const response = await axios.get(`http://localhost:4000/posts/${id}`)
