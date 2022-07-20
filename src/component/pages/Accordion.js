@@ -1,100 +1,56 @@
-import React, { useState , useRef}  from 'react';
-import {AccordionWrapper, AccordionItem} from 'custom-react-accordion';
-import 'custom-react-accordion/dist/Accordion.css';
+import React from 'react';
+import Count from './Count';
 
-const title =[
-    {
-        "title": "운동1"
-    },
-    {
-        "title": "운동2"
-    }
-]
-
-const contentList = [
-    {
-        seq: 0,
-        name: "운동1-1",
-        count: "100",
-        img: '1'
-    },
-    {
-        seq: 0,
-        name: "운동1-2",
-        count: "200",
-        img: '2'
-    },
-    {
-        seq: 1,
-        name: "운동1-3",
-        count: "200",
-        img: '3'
-    }
-]
-
-const Description = (props) => { 
-    const [count , setCount] = useState(0);
-
-    const handleInput = (e) => {
-        console.log(count)
-        setCount(e.target.value);
-    }
-
-    const Increase = (e) => {
-        setCount(count + 1);
-    }
-
-    const Decrease = (e) => {
-        setCount (Number(count) - 1)
-    }
-
-    return(
-        <div className="content">
-            {contentList.map(function(item, index){
-                if (item.seq === props.seq) {
-                    return(
-                        <div key={index}>
-                            <div className="text-wrap">
-                                <img src={item.img}></img>
-                                <input 
-                                    name="exName"
-                                    placeholder="운동 이름"
-                                    defaultValue = {item.name ? item.name : '운동 이름'}
-                                    className="ex-name"/>
-                            </div>
-
-                            <div className="count-wrap">
-                                <button type="button" onClick={Decrease}>-</button>
-                                <input 
-                                    placeholder="0"
-                                    value = {count}
-                                    defaultValue = {item.count ? item.count : count}
-                                    className="ex-count"
-                                    onChange={handleInput}/>
-                                <p>{count}</p>
-                                <button type="button" onClick={Increase}>+</button>
-                            </div>
-                        </div>
-                    )
-                }
-            })}
+function List(props) {    
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [searchResults, setSearchResults] = React.useState([]);
+    const handleSearchChange = e => {
+        setSearchTerm(e.target.value);
+    };
+    
+    React.useEffect(() => {
+        const results = props.data.filter(item =>
+            item.tit.toLowerCase().includes(searchTerm)
+        );
+        setSearchResults(results);
+    }, [searchTerm]);
+    
+    return (    
+        <div>
+            <Searchbar onSearchChange={handleSearchChange}/> 
+            <section className='list'>
+                {searchResults.map(item => <Question key={item.id} tit={item.tit} subTit={item.subTit} count={item.count} />)}
+            </section>   
         </div>
     )
 }
 
-function Accordion(){
+const Searchbar = props => {
+    const [value, setValue] = React.useState('')
+    const handleChange = (e) => {
+        setValue(e.target.value)
+        props.onSearchChange(e)
+    }
     return(
-        <AccordionWrapper>
-            {title.map((item, index) => (
-                <AccordionItem 
-                    key={index} 
-                    index={index} 
-                    title={item.title}
-                    description={<Description seq={index}/>}>
-                </AccordionItem>
-            ))}
-        </AccordionWrapper>
+        <input className='searchbar' type='text' placeholder='찾으시는 운동을 입력해주세요.' onChange={handleChange} value={value}/>       
     )
 }
 
-export default Accordion;
+const Question = props => {
+    return(
+        <div className="list-wrapper">
+            <div className='list-div' id={props.id}>
+                <input type="text" 
+                    className="main-tit"
+                    defaultValue={props.tit}/>
+                <input type="text" 
+                    className="sub-tit"
+                    defaultValue={props.subTit}/>
+
+                <Count count={props.count}/>
+            </div>
+        </div>
+    )
+}
+
+export default List;

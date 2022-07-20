@@ -32,19 +32,24 @@ function StopWatch() {
                 </span>
             </div>
 
-            <div className="btn-start"
-                onClick={() => setStart(true)}>
-                S
-            </div>
+            <div className="btn-wrap">
+                <div className="watch-btn">
+                    <span className="material-symbols-outlined" onClick={() => setStart(true)}>
+                        play_circle
+                    </span>
+                </div>
 
-            <div className="btn-start"
-                onClick={() => setStart(false)}>
-                E
-            </div>
+                <div className="watch-btn">
+                    <span className="material-symbols-outlined" onClick={() => setStart(false)}>
+                        pause_circle
+                    </span>
+                </div>
 
-            <div className="btn-start"
-                onClick={() => {setTime(0); setStart(false);}}>
-                R
+                <div className="watch-btn">
+                    <span className="material-symbols-outlined" onClick={() => {setTime(0); setStart(false);}}>
+                        stop_circle
+                    </span>
+                </div>
             </div>
         </div>
     );

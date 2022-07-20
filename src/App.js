@@ -8,7 +8,6 @@ import Write from './component/pages/Write';
 import './index.css';
 import {Pc,Mobile,Tablet} from './component/common/MediaQuery'
 
-
 const GlobalStyles = createGlobalStyle`
     ${reset};
 `;
