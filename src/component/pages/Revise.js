@@ -48,7 +48,6 @@ const Revise=()=>{
             <FormWrapper>
                 <Editor getValue={chchange} content={content} setContent={setContent} />
                 <button className = "submit-button" onClick={reWrite}>수정</button>
-                   
             </FormWrapper>
         </Layout>
         </>
