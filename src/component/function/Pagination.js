@@ -29,11 +29,14 @@ function Pagination({total,limit,page,setPage}){
 }
 
 const Nav = styled.nav`
+  position:fixed;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  bottom:80px;
+  transform:translateX(-50%);
+  left:50%;
   gap: 4px;
-  margin: 16px;
+  margin: 16px auto;
+  
 `;
 
 const Button = styled.button`
@@ -46,7 +49,7 @@ const Button = styled.button`
   font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    background: #dfbd85;
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -58,7 +61,7 @@ const Button = styled.button`
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: #dfbd85;
     font-weight: bold;
     cursor: revert;
     transform: revert;

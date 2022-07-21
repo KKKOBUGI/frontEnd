@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react';
-import { Link,useNavigate } from 'react-router-dom';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {useNavigate } from 'react-router-dom';
+import Layout from '../common/Layout';
 import axios from 'axios';
 import styled from 'styled-components'
+import Editor from '../function/Editor';
 
 
-const Write = ({history})=>{
+const Write = ()=>{
     let navigate = useNavigate()
     const [content,setContent]=useState({
       userId:null,
@@ -36,7 +36,7 @@ const Write = ({history})=>{
 
     const uploadPost=()=>{
       axios.post("http://localhost:4000/posts",{
-        userId :len+1,
+        userId :content.userId,
         id:len+1,
         body:content.body.replace(/(<([^>]+)>)/ig,""),
         title:content.title
@@ -51,50 +51,20 @@ const Write = ({history})=>{
     }, []);
 
     return(<>
-        <Link to="/">메인가기</Link>
-        <Link to="/board">게시판가기</Link>
+        <Layout>
         <FormWrapper>
-            <input className = "title-input" type='text' placeholder='제목' onChange={getValue} name='title'/>
-            <CKEditor 
-                editor={ ClassicEditor }
-                data=""
-                onReady={ editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log( 'Editor is ready to use!', editor );
-                } }
-                onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
-                    setContent({
-                    ...content,
-                    body: data
-                    })
-                }}
-                onBlur={ ( event, editor ) => {
-                    console.log( 'Blur.', editor );
-                } }
-                onFocus={ ( event, editor ) => {
-                    console.log( 'Focus.', editor );
-                } }
-            />
+            <Editor getValue={getValue} content={content} setContent={setContent} />
             <button className = "submit-button" onClick={uploadPost}>글쓰기</button>
         </FormWrapper>
+        </Layout>
 </>)
 }
 
 const FormWrapper=styled.div`
-    width: 60%;
-    margin: 0 auto;
-  
-  
-  .title-input {
-    width: 100%;
-    height: 40px;
-    margin: 10px 0px;
-  }
-  
+  width: 100%;
+  margin: 0 auto;  
   .submit-button {
-    width: 200px;
+    width: 100px;
     height: 50px;
     font-size: 20px;
     padding: 20px;
@@ -106,7 +76,7 @@ const FormWrapper=styled.div`
   }
   
   .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
-    min-height: 500px;
+    min-height: 300px;
   }
 `
 

@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
-
-import moment from 'moment';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-import StopWatch from './StopWatch.js';
-import List from './Accordion';
-
+import StopWatch from '../function/StopWatch.js';
+import List from '../function/Accordion';
+import Layout from '../common/Layout'
 const questions = [
     {
         id: 1,
@@ -44,6 +41,7 @@ const MainPage=()=>{
 
     return(
         <>
+        <Layout>
             <div className="container">
                 <div className="wrapper">
                     <Calendar 
@@ -69,12 +67,9 @@ const MainPage=()=>{
 
                 <button type="button">저장하기</button>
                 
-                <div className="btm-menu">
-                    <div className="go-write"><Link to="/board">게시판</Link></div>
-                    <div className="go-main"><Link to="/">메인</Link></div>
-                    <div className="go-user"><Link to="/">내 정보</Link></div>
-                </div>
+                
             </div>
+        </Layout>
         </>
     )
 }
